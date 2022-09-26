@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>    </th>
+        <th> Id </th>
+        <th> name </th>
+        <th> surname </th>
+        <th> email </th>
+        <th> phone number </th>
+        <th> salary </th>
+        <th> position </th>
+        <th> Company name </th>
+        <th>   </th>
+    </tr>
+    <tr th:each="employee:${employees}">
+        <td style="width: 100px">
+            <img th:if="${employee.profilePic != null}" th:src="@{/employees/image(fileName = ${employee.profilePic})}">
+            <img th:if="${employee.profilePic == null}" src="../static/image/avatar.png">
+        </td>
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.surname}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.phoneNumber}"></td>
+        <td th:text="${employee.salary}"></td>
+        <td th:text="${employee.position}"></td>
+        <td th:text="${employee.company.name}"></td>
+        <td> <a style="color: #9f0404" th:href="@{/employees/delete(id = ${employee.id})}"> DELETE</a> </td>
+    </tr>
+</table>
+<br> <br>
+<a style="color: #06f806" href="/employees/add"><h2> Add new Employee </h2></a>
+</body>
+</html>
